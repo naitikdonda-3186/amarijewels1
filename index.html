@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amari Jewels - Exquisite Handcrafted Jewelry</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Smooth scrolling and fade animations */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Fade-in animation for all sections */
+        section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Hero section should be visible immediately */
+        .hero {
+            opacity: 1;
+            transform: none;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1542990254-85e6a9a2ef92?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            color: white;
+        }
+        
+        /* Collections Section with fixed background and parallax elements */
+        .collections {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1673131158657-4404fd1f041a?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            background-attachment: fixed; /* Fixed background */
+            z-index: 1;
+        }
+        
+        /* Competence Section with fixed background */
+        .competence {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1722410180644-5955f83ec8b1?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+        
+        /* 3D Effect Container for both sections */
+        .collections::before,
+        .competence::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            z-index: -1;
+            transform: translateZ(-1px) scale(1.02);
+            background-attachment: fixed;
+        }
+        
+        /* Content container for 3D effect */
+        .collections,
+        .competence  {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform-style: preserve-3d;
+        }
+        
+        /* Parallax elements */
+        .parallax-bg {
+            position: absolute;
+            z-index: -1;
+            pointer-events: none;
+            transition: transform 0.1s linear;
+        }
+        
+      .diamond-bg {
+    width: 120px;
+    height: 120px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%2302066f" d="M50 0L100 50 50 100 0 50z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+}
+
+.ring-bg {
+    width: 150px;
+    height: 150px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2302066f" stroke-width="3"/><circle cx="50" cy="50" r="30" fill="none" stroke="%2302066f" stroke-width="3"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+}
+
+.necklace-bg {
+    width: 200px;
+    height: 100px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100"><path d="M20,50 Q100,0 180,50 Q100,100 20,50" fill="none" stroke="%2302066f" stroke-width="2"/><circle cx="100" cy="50" r="8" fill="%2302066f"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+}
+
+.pearl-bg {
+    width: 80px;
+    height: 80px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23f0f0f0" stroke="%2302066f" stroke-width="2"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+}
+
+.chain-bg {
+    width: 250px;
+    height: 50px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 50"><path d="M0,25 L250,25" fill="none" stroke="%2302066f" stroke-width="2" stroke-dasharray="5,5"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+    <div class="container">
+        <a href="#" class="logo">
+            <img src="logo amari jewels.png" alt="AmariJewels Logo" class="logo-img">
+            
+        </a>
+        <div class="hamburger" id="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#values">Our Values</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Additional parallax elements for hero -->
+        <div class="parallax-bg diamond-bg" data-speed="0.1" style="top: 20%; left: 10%; transform: rotate(15deg);"></div>
+        <div class="parallax-bg ring-bg" data-speed="0.08" style="bottom: 20%; right: 10%; transform: rotate(-10deg);"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.15" style="top: 40%; right: 15%;"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Amari Jewels</h1>
+               
+                <p class="hero-subtitle">Where timeless elegance meets modern flair to reflect every unique style and celebration.</p>
+                <a href="#collections" class="btn">Explore Collections</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section-padding" id="about">
+        <!-- Enhanced parallax elements -->
+        <div class="parallax-bg diamond-bg" data-speed="0.2" style="top: 10%; left: 5%; transform: rotate(20deg);"></div>
+        <div class="parallax-bg ring-bg" data-speed="0.1" style="bottom: 15%; right: 10%; transform: rotate(-15deg);"></div>
+        <div class="parallax-bg chain-bg" data-speed="0.25" style="top: 30%; right: 5%;"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.15" style="bottom: 25%; left: 8%;"></div>
+         <div class="parallax-bg diamond-bg" data-speed="0.15" style="bottom: 15%; right: 10%; transform: rotate(25deg);"></div>
+                <div class="parallax-bg ring-bg" data-speed="0.1" style="top: 20%; right: 10%; transform: rotate(-15deg);"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.08" style="bottom: 20%; left: 10%;"></div>
+        <div class="parallax-bg necklace-bg" data-speed="0.25" style="bottom: 10%; left: 5%;"></div>
+        
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why <span>Amari Jewels</span>?</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>At Amari Jewels, we believe jewelry is more than adornment - it's a reflection of your identity, a celebration of life's special moments, and an heirloom for generations to come.</p>
+                    <p>Founded in 2010, our master artisans combine centuries-old techniques with contemporary design to create pieces that are as unique as the individuals who wear them.</p>
+                    <p>Each piece in our collection is ethically sourced and crafted with meticulous attention to detail, ensuring exceptional quality and lasting beauty.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Amari Jewels craftsmanship" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section class="collections section-padding" id="collections">
+        <!-- Parallax elements (these will move) -->
+        <div class="parallax-bg diamond-bg" data-speed="0.15" style="top: 20%; right: 5%; transform: rotate(10deg);"></div>
+        <div class="parallax-bg necklace-bg" data-speed="0.25" style="bottom: 10%; left: 5%;"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.12" style="top: 15%; left: 20%;"></div>
+        <div class="parallax-bg ring-bg" data-speed="0.18" style="bottom: 20%; right: 20%; transform: rotate(-20deg);"></div>
+        
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: rgb(255, 255, 255);">Our <span style="color:#2023e8;">Collections</span></h2>
+                <div class="divider"></div>
+                <p class="section-subtitle" style="color: rgb(194, 192, 192);">Explore our curated selections for every occasion and style</p>
+            </div>
+            <div class="collections-grid"> 
+                <div class="collection-item">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1635&q=80" alt="Engagement Rings">
+                        <div class="collection-overlay">
+                            <h3>Engagement</h3>
+                            <a href="#" class="btn-outline">View Collection</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="collection-item">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1630326844982-9b35b01cfe59?q=80&w=2804&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wedding Bands">
+                        <div class="collection-overlay">
+                            <h3>Wedding Bands</h3>
+                            <a href="#" class="btn-outline">View Collection</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="collection-item">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1643387774154-4ec59518f9a5?q=80&w=988&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ear Rings">
+                        <div class="collection-overlay">
+                            <h3>Ear Rings</h3>
+                            <a href="#" class="btn-outline">View Collection</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="collection-item">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80" alt="Statement Necklaces">
+                        <div class="collection-overlay">
+                            <h3>Necklaces</h3>
+                            <a href="#" class="btn-outline">View Collection</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values section-padding" id="values">
+        <!-- Enhanced parallax elements -->
+        <div class="parallax-bg ring-bg" data-speed="0.05" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(15deg);"></div>
+        <div class="parallax-bg diamond-bg" data-speed="0.1" style="top: 30%; left: 20%;"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.08" style="bottom: 20%; right: 15%;"></div>
+        
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our <span>Core Values</span></h2>
+                <div class="divider"></div>
+            </div>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Exceptional Craftsmanship</h3>
+                    <p>Each piece is meticulously handcrafted by our master artisans using time-honored techniques passed down through generations.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Ethical Sourcing</h3>
+                    <p>We are committed to responsible sourcing, using only conflict-free diamonds and recycled precious metals.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Personalized Service</h3>
+                    <p>Our jewelry consultants provide bespoke service to help you find or create the perfect piece for your story.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competence Section -->
+    <section class="competence section-padding">
+        <!-- Parallax elements -->
+        <div class="parallax-bg chain-bg" data-speed="0.2" style="top: 20%; left: 10%;"></div>
+        <div class="parallax-bg diamond-bg" data-speed="0.15" style="bottom: 15%; right: 10%; transform: rotate(25deg);"></div>
+                <div class="parallax-bg ring-bg" data-speed="0.1" style="top: 20%; right: 10%; transform: rotate(-15deg);"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.08" style="bottom: 20%; left: 10%;"></div>
+        <div class="parallax-bg necklace-bg" data-speed="0.25" style="bottom: 10%; left: 5%;"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.12" style="top: 15%; left: 20%;"></div>
+               <div class="parallax-bg chain-bg" data-speed="0.2" style="top: 20%; left: 10%;"></div>
+        <div class="parallax-bg diamond-bg" data-speed="0.15" style="bottom: 15%; right: 10%; transform: rotate(25deg);"></div>
+                <div class="parallax-bg ring-bg" data-speed="0.1" style="top: 20%; right: 10%; transform: rotate(-15deg);"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.08" style="bottom: 20%; left: 10%;"></div>
+        <div class="parallax-bg necklace-bg" data-speed="0.25" style="bottom: 10%; left: 5%;"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.12" style="top: 15%; left: 20%;"></div>
+        
+        
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: rgb(255, 255, 255);">Our <span style="color: #2023e8;">Competence</span></h2>
+                <div class="divider"></div>
+            </div>
+            <div class="competence-content">
+                <div class="competence-image">
+                    <img src="https://images.unsplash.com/photo-1603974372039-adc49044b6bd?q=80&w=1034&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Amari Jewels craftsmanship" class="img-fluid">
+                </div>
+                <div class="competence-text">
+                    <ul class="competence-list">
+                        <li><i class="fas fa-check-circle"></i> Over 50 years combined experience in jewelry design and craftsmanship</li>
+                        <li><i class="fas fa-check-circle"></i> GIA-certified gemologists on staff</li>
+                        <li><i class="fas fa-check-circle"></i> Custom design services for one-of-a-kind creations</li>
+                        <li><i class="fas fa-check-circle"></i> Lifetime warranty on all our pieces</li>
+                        <li><i class="fas fa-check-circle"></i> International recognition for design excellence</li>
+                        <li><i class="fas fa-check-circle"></i> Sustainable and ethical business practices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section-padding" id="contact">
+        <!-- Parallax elements -->
+        <div class="parallax-bg ring-bg" data-speed="0.1" style="top: 20%; right: 10%; transform: rotate(-15deg);"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.08" style="bottom: 20%; left: 10%;"></div>
+        <div class="parallax-bg necklace-bg" data-speed="0.25" style="bottom: 10%; left: 5%;"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.12" style="top: 15%; left: 20%;"></div>
+                <div class="parallax-bg chain-bg" data-speed="0.2" style="top: 20%; left: 10%;"></div>
+        
+               <div class="parallax-bg chain-bg" data-speed="0.2" style="top: 20%; left: 10%;"></div>
+        <div class="parallax-bg diamond-bg" data-speed="0.15" style="bottom: 15%; right: 10%; transform: rotate(25deg);"></div>
+                <div class="parallax-bg ring-bg" data-speed="0.1" style="top: 20%; right: 10%; transform: rotate(-15deg);"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.08" style="bottom: 20%; left: 10%;"></div>
+        <div class="parallax-bg necklace-bg" data-speed="0.25" style="bottom: 10%; left: 5%;"></div>
+        <div class="parallax-bg pearl-bg" data-speed="0.12" style="top: 15%; left: 20%;"></div>
+        
+        
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact <span>Us</span></h2>
+                <div class="divider"></div>
+                <p class="section-subtitle">Visit our boutique or schedule a private consultation</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Our Boutique</h3>
+                        <p>123 Jewelry District<br>New York, NY 10001</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Phone</h3>
+                        <p>+1 (212) 555-0100</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>info@amarijewels.co</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <h3>Hours</h3>
+                        <p>Monday - Friday: 10am - 7pm<br>Saturday: 10am - 6pm<br>Sunday: By appointment</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+    <form action="https://formsubmit.co/amarijewels88@gmail.com" method="POST">
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+       <div class="form-group" style="display: flex; gap: 10px;">
+    <select name="country-code" required style="width: 30%;">
+          <option value="+1">🇺🇸 +1 (US/Canada)</option>
+    <option value="+91">🇮🇳 +91 (India)</option>
+    <option value="+44">🇬🇧 +44 (UK)</option>
+    <option value="+86">🇨🇳 +86 (China)</option>
+    <option value="+81">🇯🇵 +81 (Japan)</option>
+    <option value="+82">🇰🇷 +82 (South Korea)</option>
+    <option value="+65">🇸🇬 +65 (Singapore)</option>
+    <option value="+60">🇲🇾 +60 (Malaysia)</option>
+    <option value="+61">🇦🇺 +61 (Australia)</option>
+    <option value="+64">🇳🇿 +64 (New Zealand)</option>
+    <option value="+49">🇩🇪 +49 (Germany)</option>
+    <option value="+33">🇫🇷 +33 (France)</option>
+    <option value="+39">🇮🇹 +39 (Italy)</option>
+    <option value="+34">🇪🇸 +34 (Spain)</option>
+    <option value="+7">🇷🇺 +7 (Russia)</option>
+    <option value="+55">🇧🇷 +55 (Brazil)</option>
+    <option value="+52">🇲🇽 +52 (Mexico)</option>
+    <option value="+971">🇦🇪 +971 (UAE)</option>
+    <option value="+966">🇸🇦 +966 (Saudi Arabia)</option>
+    <option value="+20">🇪🇬 +20 (Egypt)</option>
+    <option value="+27">🇿🇦 +27 (South Africa)</option>
+    <option value="+234">🇳🇬 +234 (Nigeria)</option>
+    <option value="+254">🇰🇪 +254 (Kenya)</option>
+    <option value="+880">🇧🇩 +880 (Bangladesh)</option>
+    <option value="+92">🇵🇰 +92 (Pakistan)</option>
+    <option value="+94">🇱🇰 +94 (Sri Lanka)</option>
+    <option value="+95">🇲🇲 +95 (Myanmar)</option>
+    <option value="+66">🇹🇭 +66 (Thailand)</option>
+    <option value="+84">🇻🇳 +84 (Vietnam)</option>
+    <option value="+62">🇮🇩 +62 (Indonesia)</option>
+    <option value="+63">🇵🇭 +63 (Philippines)</option>
+    <option value="+90">🇹🇷 +90 (Turkey)</option>
+    <option value="+98">🇮🇷 +98 (Iran)</option>
+    <option value="+93">🇦🇫 +93 (Afghanistan)</option>
+    <option value="+380">🇺🇦 +380 (Ukraine)</option>
+    <option value="+48">🇵🇱 +48 (Poland)</option>
+    <option value="+31">🇳🇱 +31 (Netherlands)</option>
+    <option value="+46">🇸🇪 +46 (Sweden)</option>
+    <option value="+41">🇨🇭 +41 (Switzerland)</option>
+    <option value="+32">🇧🇪 +32 (Belgium)</option>
+    <option value="+351">🇵🇹 +351 (Portugal)</option>
+    <option value="+353">🇮🇪 +353 (Ireland)</option>
+    <option value="+358">🇫🇮 +358 (Finland)</option>
+    <option value="+45">🇩🇰 +45 (Denmark)</option>
+    <option value="+47">🇳🇴 +47 (Norway)</option>
+    <option value="+30">🇬🇷 +30 (Greece)</option>
+    <option value="+43">🇦🇹 +43 (Austria)</option>
+    <option value="+420">🇨🇿 +420 (Czech Republic)</option>
+    <option value="+36">🇭🇺 +36 (Hungary)</option>
+    <option value="+385">🇭🇷 +385 (Croatia)</option>
+    <option value="+381">🇷🇸 +381 (Serbia)</option>
+    <option value="+382">🇲🇪 +382 (Montenegro)</option>
+        <!-- Add more if needed -->
+    </select>
+
+    <input type="tel" name="phone" placeholder="Phone Number" required style="flex: 1;">
+</div>
+
+        <div class="form-group">
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        </div>
+
+        <!-- Optional hidden fields -->
+        <input type="hidden" name="_next" value="http://amarijewels.co/thankyou.html">
+        <input type="hidden" name="_captcha" value="false">
+
+        <button type="submit" class="btn">Send Message</button>
+    </form>
+</div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="#" class="logo">Amari<span>Jewels</span></a>
+                    <p>Creating timeless jewelry that celebrates life's most precious moments since 2010.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#collections">Collections</a></li>
+                        <li><a href="#values">Our Values</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Collections</h3>
+                    <ul>
+                        <li><a href="#">Engagement Rings</a></li>
+                        <li><a href="#">Wedding Bands</a></li>
+                        <li><a href="#">Luxury Watches</a></li>
+                        <li><a href="#">Statement Necklaces</a></li>
+                        <li><a href="#">Custom Designs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive updates on new collections and exclusive offers.</p>
+                  <form action="https://formsubmit.co/amarijewels88@gmail.com" method="POST">
+    <input type="email" name="email" placeholder="Your Email" required>
+    
+    <!-- Optional: hide CAPTCHA and add redirect -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://amarijewels.co/thankyou.html">
+
+    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+</form>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Amari Jewels. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Navigation
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Intersection Observer for fade animations
+            const fadeSections = document.querySelectorAll('section:not(.hero)');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            fadeSections.forEach(section => {
+                fadeObserver.observe(section);
+            });
+            
+            // Smooth scrolling for anchor links with offset
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Collection item hover effect
+            const collectionItems = document.querySelectorAll('.collection-item');
+            collectionItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.querySelector('.collection-overlay').style.opacity = '1';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.querySelector('.collection-overlay').style.opacity = '0.9';
+                });
+            });
+            
+            // Enhanced parallax effect for background elements
+            const parallaxElements = document.querySelectorAll('.parallax-bg');
+            
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.pageYOffset;
+                
+                parallaxElements.forEach(function(element) {
+                    const speed = parseFloat(element.getAttribute('data-speed'));
+                    const yPos = -(scrollPosition * speed);
+                    const currentTransform = element.style.transform;
+                    const rotation = currentTransform.includes('rotate') ? currentTransform.match(/rotate\(([^)]+)\)/)[0] : '';
+                    const translate = currentTransform.includes('translate(-50%') ? 'translate(-50%, -50%)' : '';
+                    element.style.transform = `translateY(${yPos}px) ${rotation} ${translate}`.trim();
+                });
+                
+                // Enhanced 3D effect for competence and collections sections
+                const competenceSection = document.querySelector('.competence');
+                const collectionsSection = document.querySelector('.collections');
+                
+                if (competenceSection) {
+                    const competenceRect = competenceSection.getBoundingClientRect();
+                    const competenceScroll = competenceRect.top / window.innerHeight;
+                    competenceSection.style.backgroundPositionY = `${competenceScroll * 50}%`;
+                }
+                
+                if (collectionsSection) {
+                    const collectionsRect = collectionsSection.getBoundingClientRect();
+                    const collectionsScroll = collectionsRect.top / window.innerHeight;
+                    collectionsSection.style.backgroundPositionY = `${collectionsScroll * 50}%`;
+                }
+            });
+            
+            // Initialize positions
+            window.dispatchEvent(new Event('scroll'));
+        });
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    let lastScrollY = window.scrollY;
+    const scrollThreshold = 200; // pixels to scroll before hiding
+    
+    window.addEventListener('scroll', function() {
+        const currentScrollY = window.scrollY;
+        const scrollDirection = currentScrollY > lastScrollY ? 'down' : 'up';
+        const scrollDistance = Math.abs(currentScrollY - lastScrollY);
+        
+        // Always show at top of page
+        if (currentScrollY <= 0) {
+            navbar.classList.remove('hide');
+            return;
+        }
+        
+        // Only trigger hide/show after threshold distance
+        if (scrollDistance > 5) { // Small movement threshold
+            if (scrollDirection === 'down' && currentScrollY > scrollThreshold) {
+                navbar.classList.add('hide');
+            } 
+            else if (scrollDirection === 'up') {
+                navbar.classList.remove('hide');
+            }
+        }
+        
+        lastScrollY = currentScrollY;
+    });
+});
+    </script>
+</body>
+</html>
